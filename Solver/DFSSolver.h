@@ -1,6 +1,6 @@
 
 #include<bits/stdc++.h>
-#include "../Models/RubiksCube.h"
+#include "../Model/RubiksCube.h"
 
 #ifndef RUBIKS_CUBE_SOLVER_DFSSOLVER_H
 #define RUBIKS_CUBE_SOLVER_DFSSOLVER_H

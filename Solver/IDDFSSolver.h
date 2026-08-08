@@ -1,7 +1,7 @@
 
 
 #include<bits/stdc++.h>
-#include "../Models/RubiksCube.h"
+#include "../Model/RubiksCube.h"
 #include "DFSSolver.h"
 
 #ifndef RUBIKS_CUBE_SOLVER_IDDFSSOLVER_H
