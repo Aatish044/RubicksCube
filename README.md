@@ -56,12 +56,11 @@ RubicksCube/
 │   ├── math.cpp
 │   └── math.h
 ├── Solver/
-│   ├── BFSSolver.h
-│   ├── DFSSolver.h
-│   ├── IDAstarSolver.h
-│   └── IDDFSSolver.h
-└── preparation/
-    └── (project notes and working documents)
+    ├── BFSSolver.h
+    ├── DFSSolver.h
+    ├── IDAstarSolver.h
+    └── IDDFSSolver.h
+
 ```
 
 ## Features
