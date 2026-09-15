@@ -60,11 +60,8 @@ RubicksCube/
 │   ├── DFSSolver.h
 │   ├── IDAstarSolver.h
 │   └── IDDFSSolver.h
-├── preparation/
-│   ├── Intro.md
-│   ├── Q&A.md
-│   └── overview.md
-└── Prep_Promt.md
+└── preparation/
+    └── (project notes and working documents)
 ```
 
 ## Features
@@ -77,23 +74,27 @@ RubicksCube/
 - IDA* search using heuristic pruning
 - Compact bitboard representation for faster state handling
 
-## Algorithms Included
+## Solver Design
+
+This project compares multiple ways to solve a Rubik's Cube by combining different cube representations with search strategies.
 
 ### DFS
-A depth-limited search that explores moves recursively. Useful for experimentation and understanding the search tree, but not efficient for large cubes.
+Depth-first search explores one move path deeply before backtracking. It is straightforward to implement and useful for understanding the cube state space, but it becomes inefficient for deeper scrambles because the branching factor grows quickly.
 
 ### BFS
-Breadth-first search across cube states. Good for understanding state-space structure, but memory-intensive for larger search depths.
+Breadth-first search guarantees the shortest solution in terms of move count, but it stores a very large number of states in memory. This makes it useful as a reference algorithm, though not practical for larger depth searches.
 
 ### IDDFS
-Iterative deepening depth-first search, which balances memory use and completeness.
+Iterative deepening depth-first search avoids the memory blow-up of BFS while still searching in increasing depth limits. It is a good middle ground when you want an exact solver without the full memory cost of breadth-first exploration.
 
 ### IDA*
-The main solver strategy in this project. It uses a heuristic derived from a corner pattern database to guide the search while maintaining admissibility.
+Iterative Deepening A* is the most important solver in this project. Instead of expanding every state blindly, it uses a heuristic to estimate how far a cube is from being solved. The corner-pattern database gives an admissible estimate based on the corner configuration, allowing the solver to focus on promising branches and prune inefficient ones.
+
+This is the key idea behind the project: combine a compact cube representation with informed search so the solver can handle realistic scramble depths much more efficiently than naive exhaustive search.
 
 ## Pattern Database
 
-The project includes a corner pattern database implementation designed to estimate how many moves are needed to solve the cube's corner configuration. This helps the IDA* solver prune unpromising branches and reduces the effective search space.
+The project includes a corner pattern database implementation designed to estimate how many moves are needed to solve the cube's corner configuration. This heuristic helps the IDA* solver decide which branches are worth exploring and which can be skipped. In other words, the solver does not just search blindly; it uses precomputed knowledge about corner states to guide the decision-making process.
 
 ## Build Instructions
 
@@ -159,20 +160,6 @@ Potential next steps include:
 - benchmarking each solver representation
 - improving database generation and loading reliability
 - adding documentation for algorithm trade-offs and complexity
-
-## License
-
-This project does not currently declare a specific license in the repository. If you plan to publish it publicly, consider adding an appropriate open-source license.
-
-## Contributing
-
-Contributions are welcome if you want to improve:
-
-- solver performance
-- documentation
-- code structure
-- database handling
-- testing and benchmarking
 
 ---
 
